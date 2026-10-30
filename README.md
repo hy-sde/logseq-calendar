@@ -21,7 +21,7 @@ cd logseq-calendar
 npm i
 npm run build
 mkdir -p ~/.logseq/plugins/logseq-calendar
-cp -R dist icon.svg package.json ~/.logseq/plugins/logseq-calendar/
+cp -R dist icon.svg package.json LICENSE ~/.logseq/plugins/logseq-calendar/
 ```
 
 Then restart Logseq and enable "Calendar" under Settings → Plugins. DB graphs only (`supportsDBOnly: true`).
@@ -37,3 +37,8 @@ Then restart Logseq and enable "Calendar" under Settings → Plugins. DB graphs 
 - `src/app.ts` — dock, toolbar button, resize, refresh wiring
 - `src/theme.ts` — host token mapping
 - `src/ui.css` — `--lc-*` tokens + FullCalendar variable overrides
+
+## Credits
+
+- [FullCalendar](https://github.com/fullcalendar/fullcalendar) — the calendar engine powering all views (month/week/day/list, drag & drop). MIT licensed; its license notice is included in [LICENSE](LICENSE).
+- [logseq-planner](https://github.com/hdansou/logseq-planner) — reference for the DB-graph read/write patterns and plugin packaging.
