@@ -1,0 +1,106 @@
+/* Calendar plugin styles. Tokens: host theme values land on <html> as --lc-* (src/theme.ts);
+   the defaults below mirror Logseq's default dark look until the host resolves. */
+
+:root {
+  --lc-bg: #1b1b1d;
+  --lc-bg-2: #232326;
+  --lc-text: #e8e8ea;
+  --lc-text-2: #9d9da3;
+  --lc-border: #37373b;
+  --lc-accent: #a487f5;
+  --lc-event-text: #ffffff;
+  --lc-font: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+html:not(.dark) {
+  --lc-bg: #ffffff;
+  --lc-bg-2: #f2f2f5;
+  --lc-text: #1d1d1f;
+  --lc-text-2: #6e6e73;
+  --lc-border: #d9d9de;
+  --lc-accent: #7c5cf0;
+  --lc-event-text: #ffffff;
+}
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body { background: var(--lc-bg); color: var(--lc-text); font: 14px/1.4 var(--lc-font); }
+* { box-sizing: border-box; }
+:focus-visible { outline: 2px solid var(--lc-accent); outline-offset: 1px; }
+
+/* Panel shell */
+.lsc-panel { position: relative; height: 100vh; display: flex; flex-direction: column; background: var(--lc-bg); }
+.lsc-head { display: flex; align-items: center; gap: 6px; padding: 8px 10px 6px 14px; border-bottom: 1px solid var(--lc-border); flex: none; }
+.lsc-head-title { display: flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--lc-text-2); }
+.lsc-head-title svg { color: var(--lc-accent); }
+.lsc-head-tools { margin-left: auto; display: flex; gap: 2px; }
+.lsc-ibtn { border: 0; background: transparent; color: var(--lc-text-2); width: 26px; height: 26px; border-radius: 7px; font: inherit; font-size: 13px; cursor: pointer; }
+.lsc-ibtn:hover { background: color-mix(in srgb, var(--lc-text) 8%, transparent); color: var(--lc-text); }
+.lsc-cal { flex: 1; min-height: 0; padding: 4px 10px 10px; }
+.lsc-fetch-error { flex: none; margin: 6px 10px 0; padding: 7px 10px; border: 1px solid #f2352a66; border-radius: 8px; background: #f2352a1a; color: #ff7a68; font-size: 12px; word-break: break-word; }
+
+/* Resize handle on the panel's left edge */
+.lsc-resize { position: absolute; z-index: 40; top: 0; bottom: 0; left: 0; width: 7px; cursor: col-resize; touch-action: none; }
+.lsc-resize:hover { background: var(--lc-accent); opacity: 0.4; }
+
+/* FullCalendar theme mapping (its runtime-injected styles read --fc-*) */
+.lsc-cal .fc {
+  --fc-border-color: var(--lc-border);
+  --fc-page-bg-color: var(--lc-bg);
+  --fc-neutral-bg-color: var(--lc-bg-2);
+  --fc-list-event-hover-bg-color: var(--lc-bg-2);
+  --fc-today-bg-color: color-mix(in srgb, var(--lc-accent) 9%, transparent);
+  --fc-now-indicator-color: #f2352a;
+  --fc-highlight-color: color-mix(in srgb, var(--lc-accent) 22%, transparent);
+  --fc-event-border-color: transparent;
+  --fc-event-bg-color: var(--lc-accent);
+  color: var(--lc-text);
+  font-size: 13px;
+  height: 100%;
+}
+.lsc-cal .fc .fc-toolbar-title { font-size: 17px; font-weight: 700; color: var(--lc-text); }
+.lsc-cal .fc .fc-button {
+  background: transparent; border: 1px solid transparent; color: var(--lc-text);
+  font-family: inherit; font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 8px; box-shadow: none;
+}
+.lsc-cal .fc .fc-button:hover { background: color-mix(in srgb, var(--lc-text) 9%, transparent); }
+.lsc-cal .fc .fc-button-primary:not(:disabled).fc-button-active,
+.lsc-cal .fc .fc-button-primary:not(:disabled):active { background: var(--lc-accent); color: var(--lc-event-text); }
+.lsc-cal .fc .fc-button:disabled { color: var(--lc-text-2); cursor: default; }
+.lsc-cal .fc .fc-button:focus, .lsc-cal .fc .fc-button:focus-visible { box-shadow: none; outline: none; }
+.lsc-cal .fc .fc-col-header-cell-cushion, .lsc-cal .fc .fc-list-day-cushion,
+.lsc-cal .fc .fc-daygrid-day-number, .lsc-cal .fc .fc-timegrid-slot-label-cushion { color: var(--lc-text-2); text-decoration: none; }
+.lsc-cal .fc .fc-day-today .fc-daygrid-day-number, .lsc-cal .fc .fc-day-today .fc-col-header-cell-cushion { color: var(--lc-accent); font-weight: 700; }
+.lsc-cal .fc .fc-scrollgrid { border-color: var(--lc-border); }
+
+/* Events */
+.lsc-cal .fc .fc-event { border-radius: 6px; font-size: 12px; cursor: pointer; }
+.lsc-cal .fc .fc-event, .lsc-cal .fc .fc-event .fc-event-main { color: var(--lc-event-text); }
+.lsc-cal .fc .fc-event.lsc-done { opacity: 0.45; }
+.lsc-cal .fc .fc-event.lsc-done .fc-event-main { text-decoration: line-through; }
+.lsc-cal .fc .fc-daygrid-event { padding: 1px 6px; }
+.lsc-cal .fc .fc-timegrid-event { padding: 2px 6px; overflow: hidden; }
+.lsc-cal .fc .fc-timegrid-event .fc-event-time { font-weight: 600; }
+.lsc-cal .fc .fc-list.fc-scrollgrid { border: 0; }
+.lsc-cal .fc .fc-list-day-side-text, .lsc-cal .fc .fc-list-day-text { color: var(--lc-text-2); }
+
+/* Form overlay */
+.lsc-overlay { position: fixed; inset: 0; z-index: 60; background: color-mix(in srgb, #000 42%, transparent); display: grid; place-items: center; }
+.lsc-form { width: min(380px, calc(100vw - 48px)); background: var(--lc-bg-2); border: 1px solid var(--lc-border); border-radius: 12px;
+  padding: 16px; display: grid; gap: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+.lsc-form-title { font-size: 14px; font-weight: 700; }
+.lsc-input { border: 1px solid var(--lc-border); border-radius: 8px; padding: 6px 9px; font: inherit; background: var(--lc-bg); color: var(--lc-text); width: 100%; }
+.lsc-input:focus { border-color: var(--lc-accent); outline: none; }
+.lsc-title { font-size: 14px; }
+.lsc-check { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--lc-text); cursor: pointer; }
+.lsc-check input { accent-color: var(--lc-accent); }
+.lsc-grid { display: grid; grid-template-columns: 52px 1fr 1fr; gap: 8px; align-items: center; font-size: 13px; color: var(--lc-text-2); }
+.lsc-form-actions { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.lsc-form-links { flex: 1; display: flex; gap: 10px; }
+.lsc-link { border: 0; background: none; color: var(--lc-text-2); font: inherit; font-size: 12.5px; cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+.lsc-link:hover { color: var(--lc-text); }
+.lsc-link.lsc-danger:hover { color: #f2352a; }
+.lsc-btn { border: 0; border-radius: 980px; padding: 6px 14px; font: inherit; font-size: 13px; cursor: pointer;
+  background: color-mix(in srgb, var(--lc-text) 10%, transparent); color: var(--lc-text); }
+.lsc-btn:hover { background: color-mix(in srgb, var(--lc-text) 16%, transparent); }
+.lsc-btn.lsc-primary { background: var(--lc-accent); color: var(--lc-event-text); }
+.lsc-btn:disabled { opacity: 0.55; cursor: default; }
+.lsc-form-error { color: #f2352a; font-size: 12.5px; }

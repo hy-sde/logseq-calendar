@@ -1,0 +1,37 @@
+{
+  "name": "logseq-calendar",
+  "version": "0.1.0",
+  "description": "A month/week/day/list calendar over daily notes in a Logseq DB graph: create, drag and edit events from a docked side panel",
+  "author": "hui",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "dist/index.html",
+  "scripts": {
+    "dev": "vite --port 8295 --strictPort",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "logseq": {
+    "id": "logseq-calendar",
+    "title": "Calendar",
+    "icon": "./icon.svg",
+    "main": "dist/index.html",
+    "supportsDB": true,
+    "supportsDBOnly": true,
+    "minSDKVersion": "0.3.4"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.22",
+    "@fullcalendar/daygrid": "^6.1.22",
+    "@fullcalendar/interaction": "^6.1.22",
+    "@fullcalendar/list": "^6.1.22",
+    "@fullcalendar/timegrid": "^6.1.22",
+    "@logseq/libs": "^0.3.4"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}

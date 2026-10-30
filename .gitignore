@@ -1,0 +1,23 @@
+# dependencies and build output
+node_modules/
+dist/
+coverage/
+.vite/
+.cache/
+
+# environment and local overrides
+.env*
+*.local.json
+*.local.ts
+
+# scratch and OS/editor noise
+tmp/
+scratch/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# bundles
+*.zip
