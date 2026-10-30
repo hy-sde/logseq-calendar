@@ -7,13 +7,17 @@ A month/week/day/list calendar for Logseq DB graphs, styled after the Obsidian f
 - **Open**: click the calendar icon in Logseq's top toolbar (or command palette → "Calendar: open"). The panel docks to the right edge; drag its left edge to resize (420–980 px, persisted).
 - **Create**: click any empty slot (or drag across slots), fill the form, save. The event block is appended to that day's journal page.
 - **Edit**: click an event. Drag / resize moves it. Delete from the edit form.
-- **Storage**: an event is a journal block whose content is the title, with `:logseq.property/scheduled` (start) and optionally `:logseq.property/deadline` (end) — epoch ms for timed events, a reference to the day's journal page for all-day events. The same properties the built-in logseq planner/SCHEDULAR features use, so events stay visible in Logseq's own property views.
+- **Storage**: an event is a journal block whose content is the title, with `:logseq.property/scheduled` (start) and optionally `:logseq.property/deadline` (end) — epoch ms for timed events, a reference to the day's journal page for all-day events. The same properties the built-in planner/scheduler features use, so events stay visible in Logseq's own property views.
 - **Live refresh**: the calendar refetches (debounced) whenever the graph changes.
 - **Theme**: follows the host theme's CSS tokens; dark and light both supported.
 
 ## Build & install
 
+Requires Node ≥ 22. Either build from source:
+
 ```
+git clone https://github.com/hy-sde/logseq-calendar
+cd logseq-calendar
 npm i
 npm run build
 mkdir -p ~/.logseq/plugins/logseq-calendar
